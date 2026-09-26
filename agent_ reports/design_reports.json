@@ -1,0 +1,108 @@
+{
+  "subagent": "design_agent",
+  "runId": "deff2ca5-8d8e-4a47-93e9-a4102a6dcb2e",
+  "handoff": {
+    "brandId": "spacex",
+    "referenceIds": ["bmw", "hp"],
+    "designSignature": "Blueprint-grid corporate architecture: a white canvas ruled like a drafting sheet — hairline column rules and a thin gold baseline that runs under every section heading — with uppercase Barlow Condensed display set bottom-left over full-bleed site photography. Signature element: a \"project ledger\" motif — every project and process step is presented as a numbered ledger row (01–06, tabular numerals, hairline dividers, gold index numeral) instead of cards, evoking a contractor's measurement book. Gold (#B8860B-family amber) is the only accent, spent exclusively on index numerals, the active nav underline and the primary CTA; navy carries hero bands.",
+    "shell": "Fixed 72px top bar, bg-background with 1px border-border bottom rule; wordmark \"ANCHOR-BOLT\" in Barlow Condensed 700 uppercase tracked +0.08em left, nav right in 13px uppercase Barlow 500 tracked +0.06em (Services, Our Work, Process, Contact) with a 2px gold underline on active/hover; primary action \"Request Consultation\" as a filled bg-primary text-primary-foreground pill (px-6 py-3, 13px uppercase 700). Content max-width 1200px, 12-column grid, 24px gutters. Hero and section bands break out full-bleed. Section rhythm 96px vertical desktop / 48px mobile. One CTA per band.",
+    "screens": [
+      {
+        "route": "/",
+        "purpose": "Establish credibility and route visitors to services, portfolio and the consultation form.",
+        "layout": "Full-bleed 21:9 hero photo (construction site) with no scrim; bottom-left: gold eyebrow 'SEKONDI-TAKORADI · GHANA', 64px uppercase Barlow Condensed headline 'WE BUILD WHAT LASTS.', one ghost pill 'View Our Work' + one filled pill 'Request a Consultation'. Below: stat ledger row (Years 25+, Projects 120+, Towns served 14 — 60px condensed tabular numerals, hairline dividers). Three service rows as ledger entries (01 Building Construction / 02 Property Development / 03 Project Management) each with 48px title, 2-line description, 'Learn more' link. Navy band (bg-sidebar) with white text: company statement + gold rule. Process teaser: 4 numbered steps in one row. Contact strip: split 7/5 — copy + consultation form teaser.",
+        "states": "Hero image fade-in 600ms, headline rises 8px once; ledger rows reveal on scroll (opacity+8px, 300ms ease-out, disabled under prefers-reduced-motion). Link hover: gold underline slides in 200ms. Empty stats never shown — data comes from API with skeleton hairlines.",
+        "responsive": "Nav collapses to hamburger opening a full-screen bg-background overlay with 32px uppercase links; hero title 40px, stat ledger stacks vertically with hairlines; service rows stack image-less with 24px gaps."
+      },
+      {
+        "route": "/services",
+        "purpose": "Detail the three service lines with scope, deliverables and proof.",
+        "layout": "Full-bleed 21:9 scaffolding photo header with uppercase 48px title bottom-left. Three alternating bands (photo 7 cols / text 5 cols, then reversed): each with gold index numeral, 32px uppercase heading, body 16px/1.55, a 4-item deliverable list with 1px border-border rules, and one ghost pill CTA to /contact. Closing navy band: 'Not sure which service you need?' + filled pill.",
+        "states": "Photo hover: subtle 1.03 scale over 400ms (disabled reduced-motion). List rows highlight bg-muted on hover. Loading: skeleton hairline blocks matching band heights.",
+        "responsive": "Bands stack photo-above-text; deliverable lists remain full-width rows; CTA pills become full-width."
+      },
+      {
+        "route": "/our-work",
+        "purpose": "Project portfolio presented as the company's project ledger.",
+        "layout": "Page header: eyebrow 'OUR WORK', 56px uppercase title, one-line intro. Filter tabs (All / Construction / Development / Management) as uppercase 13px text with gold active underline. Portfolio as ledger rows: each row = 4-col thumbnail photo, project name 24px Barlow 700, metadata columns (Location · Type · Year, tabular numerals) and a gold 2-digit index. Rows separated by 1px border-border; row click opens project detail overlay (Radix Dialog) with larger photo, scope paragraph and outcome stats.",
+        "states": "Filter switch animates row re-order 250ms; empty filter result shows uppercase 'NO PROJECTS IN THIS CATEGORY' + reset link. Loading: 6 skeleton rows. Dialog: focus-trapped, ESC closes, photo loads with blur-up.",
+        "responsive": "Rows collapse to stacked photo cards (photo 16:9, name, meta line); filters become horizontal scroll chips; dialog becomes full-screen sheet."
+      },
+      {
+        "route": "/process",
+        "purpose": "Explain the 5-stage company process to de-risk the client decision.",
+        "layout": "White page, no hero. Title band, then vertical ledger: five rows, each with 60px gold condensed numeral (01–05), stage name 24px uppercase, 2-sentence description, and a right-aligned 'typical duration' in tabular numerals (e.g. '2–4 WEEKS'). A vertical 1px border-border rule with gold node dots connects the rows — the drafting-sheet motif. Closing band: navy, 'Start at stage one.' + filled pill to /contact.",
+        "states": "Rows reveal sequentially on scroll 300ms; node dots fill gold when row enters viewport (reduced-motion: all filled statically).",
+        "responsive": "Numeral shrinks to 40px, duration moves under the stage name; connecting rule hides below md."
+      },
+      {
+        "route": "/contact",
+        "purpose": "Convert visitors into consultation enquiries.",
+        "layout": "Split 7/5: left = form (Full name, Company, Email, Phone, Service interest as Select, Project brief textarea, all h-11 inputs, 1px border-input, rounded, focus ring-foreground); right = bg-muted panel with office address (Anchor-Bolt Company Limited, Sekondi-Takoradi, Western Region, Ghana), phone, email, hours, each with a lucide icon, plus a small gold-ruled note 'We respond within one business day.' Submit = filled pill 'Request Consultation'.",
+        "states": "Inline zod validation with 13px destructive messages; submitting disables button with 'Sending…'; success replaces form with a confirmation panel (gold check, uppercase 'REQUEST RECEIVED', reference number in tabular numerals); error shows sonner toast and retains input. Data posts to FastAPI POST /api/consultations and persists to MongoDB.",
+        "responsive": "Single column, info panel below form; submit button sticky at bottom on small screens."
+      }
+    ],
+    "components": [
+      "Ghost pill button: 1px border-foreground, transparent bg, uppercase 13px/700 tracked +0.06em, px-6 py-3, rounded-full; hover inverts to bg-foreground text-background, 200ms",
+      "Filled pill CTA: bg-primary text-primary-foreground, same metrics; only one per band",
+      "Ledger row: 1px border-border top rule, 24px vertical padding, grid [index 64px | content 1fr | meta 240px], gold index numeral in Barlow Condensed 700",
+      "Section heading lockup: 12px uppercase gold eyebrow tracked +0.1em, 2px gold 48px-wide rule, then uppercase condensed heading",
+      "Stat block: 60px Barlow Condensed 700 tabular numerals, 13px uppercase muted label",
+      "Input: h-11, bg-background, 1px border-input, rounded (4px), 15px Barlow; focus ring-foreground 2px",
+      "Filter tab: uppercase 13px, 2px gold underline on active, text-muted-foreground default",
+      "Navy band: bg-sidebar text-white, 96px vertical padding, gold 48px rule accent"
+    ],
+    "typographyAndSpacing": "Fonts: Barlow (400/500/700) for body and UI; Barlow Condensed 700 for all display, UPPERCASE, line-height 0.95–1.1, tracking +0.02–0.08em. Scale: hero 64px, section 48px, sub 32px, card title 24px, body 16px/1.55, chrome/eyebrow/nav 12–13px uppercase tracked +0.06–0.1em, form 15px. Spacing base 8px; ladder 4/8/12/16/24/32/48/96; section padding 96px desktop, 48px mobile; card padding 24px; grid gutter 24px. Radii 4px (inputs/cards), pills rounded-full. No shadows anywhere — hairlines (1px border-border) carry separation. Tabular numerals on all stats, years and durations.",
+    "imagery": "Real photography is essential to this product. Use two verified assets: hero (construction site with excavators, Ghana) full-bleed 21:9 on /, and scaffolding-workers photo as the /services header and optionally the / Our Work teaser. Crop wide, grade slightly desaturated to sit with the charcoal/gold system; no scrims or gradient overlays — set type directly on the photo bottom-left with a subtle bottom-edge darkening only if contrast fails. Portfolio thumbnails reuse these plus builder-supplied crops; never stock people-in-suits imagery.",
+    "accessibility": [
+      "Verify gold-on-white text (eyebrows, numerals) meets 4.5:1 — use the darker amber value for text, reserve brighter gold for rules/dots",
+      "All hero text over photos: verify contrast against the image; add a bottom-edge scrim only if needed",
+      "Filter tabs and nav are real buttons/links with visible focus ring (ring-foreground 2px)",
+      "Dialog overlay: focus trap, ESC close, aria-labelledby project name",
+      "Form fields have visible labels (not placeholder-only); errors announced with aria-describedby",
+      "All scroll/hover motion disabled under prefers-reduced-motion",
+      "Alt text describes the actual construction scene, not 'image of'"
+    ],
+    "avoid": [
+      "No purple/blue gradients, glassmorphism or drop shadows",
+      "No generic four-card service dashboard — services are ledger rows",
+      "No scrims or heavy overlays on photography",
+      "No sentence-case display headings — display is uppercase condensed",
+      "No second accent color; gold is the only voltage",
+      "No emoji icons; lucide only",
+      "No stock handshakes/suits; construction imagery only",
+      "No mock form submission — POST to real FastAPI endpoint"
+    ],
+    "implementation": [
+      "Set up token layer: apply palette (white canvas, charcoal ink, deep navy sidebar band, gold accent), import Barlow + Barlow Condensed, hairline-only elevation",
+      "Build shared primitives: GhostPill, FilledPill, LedgerRow, SectionHeading lockup, StatBlock, NavyBand",
+      "Shell: fixed 72px header with wordmark, nav + active gold underline, mobile full-screen overlay menu",
+      "Home page: hero (photo asset), stat ledger (GET /api/stats), services ledger rows, process teaser, contact strip",
+      "Services page: photo header + three alternating bands from a services collection in MongoDB (GET /api/services)",
+      "Our Work: filter tabs + ledger rows from GET /api/projects, detail Dialog; seed clearly-labeled demo projects",
+      "Process page: static five-stage ledger with scroll reveal",
+      "Contact: react-hook-form + zod, POST /api/consultations (FastAPI → MongoDB), success/error/sonner states",
+      "Responsive passes at md/sm per screen specs; reduced-motion audit"
+    ],
+    "palette": {
+      "accent": "36 78% 38%",
+      "accentForeground": "0 0% 100%",
+      "background": "0 0% 100%",
+      "border": "220 12% 90%",
+      "card": "0 0% 100%",
+      "cardForeground": "210 18% 12%",
+      "foreground": "210 18% 12%",
+      "muted": "210 14% 96%",
+      "mutedForeground": "210 8% 40%",
+      "primary": "215 60% 18%",
+      "primaryForeground": "0 0% 100%",
+      "sidebarBackground": "215 60% 14%",
+      "sidebarForeground": "0 0% 96%"
+    },
+    "typographyBrandId": "spacex",
+    "direction": "Premium corporate construction and real-estate aesthetic: architectural, strong, trustworthy, established. Clean white/charcoal backgrounds with deep navy, steel gray and warm gold/amber accents. Bold geometric typography, strong grid layouts, full-width architectural photography, generous section rhythm. Sophisticated and hand-crafted — never a generic construction template, never purple/blue gradient slop.",
+    "assets": []
+  },
+  "themeBlock": "<theme>\nThe project theme is LOCKED in frontend/src/index.css (brand skill: SpaceX, luxury-cinematic).\nNever write --primary/--background/--font-* or Google-Fonts imports yourself and never pick a different color story or font pair — build on these tokens with semantic classes (bg-primary, text-muted-foreground, border-border, --shadow-md). To change the look, call design_agent instead of editing tokens.\nTokens (HSL): primary 215 60% 18% · background 0 0% 100% · foreground 210 18% 12% · accent 36 78% 38% · card 0 0% 100% · radius 0.25rem · dark background 0 0% 100%\nMode: DARK — `<html class=\"dark\">` is already set (design_agent did it), so the `.dark` tokens are the live palette and `:root` is only the light fallback. Build for the dark canvas; do not add a light/dark toggle unless the user asks.\nFonts (already imported in index.css): sans Barlow, sans-serif · display/headings Barlow Condensed, sans-serif — apply with `font-family: var(--font-display)` (append a `.font-display` utility to index.css once, then use that class) · serif Lora, serif (`font-serif`) · mono JetBrains Mono, monospace (`font-mono`).\nComposition, components and spacing come from design_guidelines.md (this product's own design), not from the reference brand's stock layout.\n</theme>"
+}
