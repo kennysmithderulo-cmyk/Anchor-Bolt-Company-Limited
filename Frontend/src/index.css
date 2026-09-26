@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 50% 96.1%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 240 50% 96.1%;
+    --muted-foreground: 240 2.7% 36.3%;
+    --accent: 240 50% 96.1%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 14.8% 89.4%;
+    --input: 240 14.8% 89.4%;
+    --ring: 0 0% 0%;
+    --font-sans: Barlow, sans-serif;
+    --font-serif: Lora, serif;
+    --font-mono: JetBrains Mono, monospace;
+    --shadow-x: 0px;
+    --shadow-y: 2px;
+    --shadow-blur: 6px;
+    --shadow-spread: 0px;
+    --shadow-opacity: 6%;
+    --shadow-color: #000000;
+    --shadow-2xs: 0px 2px color-mix(in srgb, #000000 6%, transparent);
+    --shadow-xs: 0px 2px 6px 0px color-mix(in srgb, #000000 6%, transparent);
+    --shadow-sm: 0px 2px 9px 0px color-mix(in srgb, #000000 6%, transparent);
+    --shadow: 0px 4px 18px -1px color-mix(in srgb, #000000 6%, transparent);
+    --shadow-md: 0px 4px 18px -1px color-mix(in srgb, #000000 6%, transparent);
+    --shadow-lg: 0px 8px 30px -3px color-mix(in srgb, #000000 6%, transparent);
+    --shadow-xl: 0px 12px 42px -4px color-mix(in srgb, #000000 6%, transparent);
+    --shadow-2xl: 0px 16px 54px -5px color-mix(in srgb, #000000 7.199999999999999%, transparent);
+    --radius: 0.25rem;
+    --font-display: Barlow Condensed, sans-serif;
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), color-mix(in oklab, hsl(var(--primary)) 70%, hsl(var(--background))));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--background)));
+    --shadow-glow: 0 0 24px hsl(var(--primary) / 0.25);
+    --shadow-elegant: 0 8px 32px hsl(var(--primary) / 0.12), 0 2px 8px hsl(var(--foreground) / 0.08);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-fast: color 0.15s var(--ease-smooth), background-color 0.15s var(--ease-smooth), border-color 0.15s var(--ease-smooth), opacity 0.15s var(--ease-smooth), box-shadow 0.15s var(--ease-smooth);
+    --transition-smooth: color 0.3s var(--ease-smooth), background-color 0.3s var(--ease-smooth), border-color 0.3s var(--ease-smooth), opacity 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+    --transition-spring: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring);
+    --sidebar-background: var(--card);
+    --sidebar-foreground: var(--card-foreground);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: var(--muted);
+    --sidebar-accent-foreground: var(--foreground);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--ring);
+  }
+
+  .dark {
+    --background: 0 0% 100%;
+    --foreground: 210 18% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 18% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 18% 12%;
+    --primary: 215 60% 18%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 14% 96%;
+    --secondary-foreground: 210 8% 40%;
+    --muted: 210 14% 96%;
+    --muted-foreground: 210 8% 40%;
+    --accent: 36 78% 38%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 12% 90%;
+    --input: 220 12% 90%;
+    --ring: 215 60% 18%;
+    --font-sans: Barlow, sans-serif;
+    --font-serif: Lora, serif;
+    --font-mono: JetBrains Mono, monospace;
+    --shadow-x: 0px;
+    --shadow-y: 0px;
+    --shadow-blur: 0px;
+    --shadow-spread: 0px;
+    --shadow-opacity: 0%;
+    --shadow-color: #000000;
+    --shadow-2xs: 0px 0px color-mix(in srgb, #000000 0%, transparent);
+    --shadow-xs: none;
+    --shadow-sm: none;
+    --shadow: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+    --shadow-xl: none;
+    --shadow-2xl: none;
+    --font-display: Barlow Condensed, sans-serif;
+    --sidebar-background: 215 60% 14%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 215 60% 18%;
+    --sidebar-ring: 215 60% 18%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 36 78% 38%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 12% 90%;
+    --shadow-glow: 0 0 24px hsl(var(--primary) / 0.4);
+    --shadow-elegant: 0 8px 32px hsl(var(--primary) / 0.2), 0 2px 8px hsl(0 0% 0% / 0.25);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  :root { color-scheme: light; }
+  .dark { color-scheme: dark; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: Barlow, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .shadow-sm { box-shadow: var(--shadow-sm); }
+  .shadow-md { box-shadow: var(--shadow-md); }
+  .shadow-lg { box-shadow: var(--shadow-lg); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .gradient-primary { background: var(--gradient-primary); }
+  .gradient-subtle { background: var(--gradient-subtle); }
+  .gradient-card { background: var(--gradient-card); }
+  .transition-smooth { transition: var(--transition-smooth); }
+  .transition-spring { transition: var(--transition-spring); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.4s var(--ease-smooth) both; }
+.animate-fade-up { animation: fade-up 0.5s var(--ease-smooth) both; }
+.animate-slide-in { animation: slide-in 0.4s var(--ease-smooth) both; }
+.animate-scale-in { animation: scale-in 0.3s var(--ease-spring) both; }
+
+/* One orchestrated page load: put .animate-fade-up on siblings and .stagger-N
+   on each (N = position). --stagger tunes the gap per parent. */
+.stagger-1 { animation-delay: calc(var(--stagger, 60ms) * 1); }
+.stagger-2 { animation-delay: calc(var(--stagger, 60ms) * 2); }
+.stagger-3 { animation-delay: calc(var(--stagger, 60ms) * 3); }
+.stagger-4 { animation-delay: calc(var(--stagger, 60ms) * 4); }
+.stagger-5 { animation-delay: calc(var(--stagger, 60ms) * 5); }
+.stagger-6 { animation-delay: calc(var(--stagger, 60ms) * 6); }
+.stagger-7 { animation-delay: calc(var(--stagger, 60ms) * 7); }
+.stagger-8 { animation-delay: calc(var(--stagger, 60ms) * 8); }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in, .animate-fade-up, .animate-slide-in, .animate-scale-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .transition-smooth, .transition-spring { transition: none; }
+}
+
+/* greta:shadow-utilities:start */
+.shadow { box-shadow: var(--shadow) !important; }
+.shadow-2xs { box-shadow: var(--shadow-2xs) !important; }
+.shadow-xs { box-shadow: var(--shadow-xs) !important; }
+.shadow-sm { box-shadow: var(--shadow-sm) !important; }
+.shadow-md { box-shadow: var(--shadow-md) !important; }
+.shadow-lg { box-shadow: var(--shadow-lg) !important; }
+.shadow-xl { box-shadow: var(--shadow-xl) !important; }
+.shadow-2xl { box-shadow: var(--shadow-2xl) !important; }
+/* greta:shadow-utilities:end */
+
+/* Extra tokens built from the locked palette (see design_guidelines.md).
+   The theme variables above are managed by design_agent — nothing here overrides them. */
+:root {
+  --primary-hover: hsl(215 62% 26%);
+  --rule-on-light: hsl(215 60% 18% / 0.12);
+  --rule-on-dark: hsl(0 0% 96% / 0.22);
+  --accent-on-dark: hsl(36 88% 60%);
+  --hero-scrim: linear-gradient(
+    to top,
+    hsl(215 60% 9% / 0.86) 0%,
+    hsl(215 60% 9% / 0.56) 20%,
+    hsl(215 60% 9% / 0.14) 44%,
+    hsl(215 60% 9% / 0) 62%
+  );
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .hero-scrim {
+    background-image: var(--hero-scrim);
+  }
+}
