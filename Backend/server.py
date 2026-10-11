@@ -385,9 +385,3 @@ PROCESS_SEED = [
         "deliverable": "Supervised delivery · Progress reports",
     },
 ]
-            {
-        "index": "03",
-        "title": "Construction",
-        "description": "The project is executed with quality and precision: supervised trades, controlled materials, staged inspections and reported progress.",
-        "deliverable": "Supervised delivery · Progress reports",
-    },
