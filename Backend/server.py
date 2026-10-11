@@ -385,3 +385,88 @@ PROCESS_SEED = [
         "deliverable": "Supervised delivery · Progress reports",
     },
 ]
+# --------------------------------------------------------------------------- #
+# CORS
+# --------------------------------------------------------------------------- #
+allowed_origins = os.environ.get(
+    "ALLOWED_ORIGINS",
+    "http://localhost:5173,https://anchor-bolt-company-limited.vercel.app",
+).split(",")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[origin.strip() for origin in allowed_origins],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# --------------------------------------------------------------------------- #
+# Helpers
+# --------------------------------------------------------------------------- #
+async def ensure_seed_data():
+    collections = {
+        "services": SERVICES_SEED,
+        "projects": PROJECTS_SEED,
+        "pillars": PILLARS_SEED,
+        "process": PROCESS_SEED,
+    }
+
+    for collection_name, seed_data in collections.items():
+        collection = db[collection_name]
+        if await collection.count_documents({}) == 0:
+            await collection.insert_many(seed_data.copy())
+
+
+@app.on_event("startup")
+async def startup_event():
+    await ensure_seed_data()
+
+
+# --------------------------------------------------------------------------- #
+# Routes
+# --------------------------------------------------------------------------- #
+@api_router.get("/")
+async def api_root():
+    return {"status": "ok", "service": "Anchor-Bolt Company Limited API"}
+
+
+@api_router.get("/services")
+async def get_services():
+    items = await db.services.find({}, PROJECTION).sort("index", 1).to_list(100)
+    return items
+
+
+@api_router.get("/projects")
+async def get_projects():
+    items = await db.projects.find({}, PROJECTION).sort("index", 1).to_list(100)
+    return items
+
+
+@api_router.get("/pillars")
+async def get_pillars():
+    items = await db.pillars.find({}, PROJECTION).sort("index", 1).to_list(100)
+    return items
+
+
+@api_router.get("/process")
+async def get_process():
+    items = await db.process.find({}, PROJECTION).sort("index", 1).to_list(100)
+    return items
+
+
+@api_router.post("/consultations")
+async def create_consultation(consultation: ConsultationCreate):
+    document = consultation.model_dump()
+    document["id"] = str(uuid.uuid4())
+    document["reference"] = f"AB-{uuid.uuid4().hex[:8].upper()}"
+    document["status"] = "new"
+    document["created_at"] = datetime.now(timezone.utc)
+
+    await db.consultations.insert_one(document)
+    document.pop("_id", None)
+    return document
+
+
+# Required: registers every /api/... route with FastAPI
+app.include_router(api_router)
