@@ -378,7 +378,13 @@ PROCESS_SEED = [
         "description": "We develop the project approach and scope — drawings, specification, programme, responsibilities and cost plan — agreed before work starts.",
         "deliverable": "Scope · Programme · Cost plan",
     },
-    }
+    {
+        "index": "03",
+        "title": "Construction",
+        "description": "The project is executed with quality and precision: supervised trades, controlled materials, staged inspections and reported progress.",
+        "deliverable": "Supervised delivery · Progress reports",
+    },
+]
             {
         "index": "03",
         "title": "Construction",
